@@ -3,7 +3,7 @@
 Summary:        Tool to transform and deploy CPU microcode update for x86.
 Name:           microcode_ctl
 Version:        2.1
-Release:        26.xs1
+Release:        26.xs1%{dist}
 Epoch:          2
 Group:          System Environment/Base
 License:        Portions GPLv2+, Portions Non-Redistributable (See description)
