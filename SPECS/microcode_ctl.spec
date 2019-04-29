@@ -1,17 +1,20 @@
-%define upstream_version 2.1-19-xs1
+%define upstream_version 2.1-19-xs2
 
 Summary:        Tool to transform and deploy CPU microcode update for x86.
 Name:           microcode_ctl
 Version:        2.1
-Release:        26.xs1
+Release:        26.xs2
 Epoch:          2
 Group:          System Environment/Base
-License:        Portions GPLv2+, Portions Non-Redistributable (See description)
+License:        GPLv2+ and Redistributable, no modification permitted
 URL:            https://pagure.io/microcode_ctl
 #Source0:        https://releases.pagure.org/microcode_ctl/%{name}-%{upstream_version}.tar.xz
-Source0:        https://repo.citrite.net/xs-local-contrib/microcode_ctl/%{name}-%{upstream_version}.tar.xz
-Source1:        01-microcode.conf
-Source2:        intel-ucode-end-user.txt
+
+Source0: https://repo.citrite.net/xs-local-contrib/microcode_ctl/microcode_ctl-2.1-19-xs2.tar.xz
+Source1: SOURCES/microcode_ctl/01-microcode.conf
+
+
+
 Buildroot:      %{_tmppath}/%{name}-%{version}-root
 ExclusiveArch:  %{ix86} x86_64
 BuildRequires:  kernel-devel
@@ -23,9 +26,6 @@ by Tigran Aivazian <tigran@aivazian.fsnet.co.uk>.
 The microcode update is volatile and needs to be uploaded on each system
 boot i.e. it doesn't reflash your cpu permanently, reboot and it reverts
 back to the old microcode.
-
-The Intel micrcode distribution is restricted and a subject of Intel EULA
-supplied. See intel-ucode-end-user.txt for details.
 
 %prep
 %setup -q -n %{name}-%{upstream_version}
@@ -39,7 +39,6 @@ make DESTDIR=%{buildroot} PREFIX=%{_prefix} INSDIR=/usr/sbin install clean
 
 mkdir -p %{buildroot}/usr/lib/dracut/dracut.conf.d
 install -m 644 %{SOURCE1} %{buildroot}/usr/lib/dracut/dracut.conf.d
-install -m 644 %{SOURCE2} %{buildroot}/usr/share/doc/microcode_ctl
 
 %post
 %{regenerate_initrd_post}
@@ -60,6 +59,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Fri Feb 08 2019 Sergey Dyasli <sergey.dyasli@citrix.com> - 2.1-26-xs2
+- Update to intel Q4'18 microcode
+
 * Mon Aug 13 2018 Igor Druzhinin <igor.druzhinin@citrix.com> - 2.1-26-xs1
 - Update to upstream 2.1-19. 20180807 to take a Broadwell bundle
 - Fix Makefile in the tarball to work with our version of tar
