@@ -1,16 +1,17 @@
-%define upstream_version 2.1-16-xs1
+%define upstream_version 2.1-19-xs1
 
 Summary:        Tool to transform and deploy CPU microcode update for x86.
 Name:           microcode_ctl
 Version:        2.1
-Release:        22.xs1
+Release:        26.xs1
 Epoch:          2
 Group:          System Environment/Base
-License:        GPLv2+ and Redistributable, no modification permitted
+License:        Portions GPLv2+, Portions Non-Redistributable (See description)
 URL:            https://pagure.io/microcode_ctl
 #Source0:        https://releases.pagure.org/microcode_ctl/%{name}-%{upstream_version}.tar.xz
 Source0:        https://repo.citrite.net/xs-local-contrib/microcode_ctl/%{name}-%{upstream_version}.tar.xz
 Source1:        01-microcode.conf
+Source2:        intel-ucode-end-user.txt
 Buildroot:      %{_tmppath}/%{name}-%{version}-root
 ExclusiveArch:  %{ix86} x86_64
 BuildRequires:  kernel-devel
@@ -22,6 +23,9 @@ by Tigran Aivazian <tigran@aivazian.fsnet.co.uk>.
 The microcode update is volatile and needs to be uploaded on each system
 boot i.e. it doesn't reflash your cpu permanently, reboot and it reverts
 back to the old microcode.
+
+The Intel micrcode distribution is restricted and a subject of Intel EULA
+supplied. See intel-ucode-end-user.txt for details.
 
 %prep
 %setup -q -n %{name}-%{upstream_version}
@@ -35,6 +39,7 @@ make DESTDIR=%{buildroot} PREFIX=%{_prefix} INSDIR=/usr/sbin install clean
 
 mkdir -p %{buildroot}/usr/lib/dracut/dracut.conf.d
 install -m 644 %{SOURCE1} %{buildroot}/usr/lib/dracut/dracut.conf.d
+install -m 644 %{SOURCE2} %{buildroot}/usr/share/doc/microcode_ctl
 
 %post
 %{regenerate_initrd_post}
@@ -55,6 +60,20 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Mon Aug 13 2018 Igor Druzhinin <igor.druzhinin@citrix.com> - 2.1-26-xs1
+- Update to upstream 2.1-19. 20180807 to take a Broadwell bundle
+- Fix Makefile in the tarball to work with our version of tar
+
+* Thu Aug 09 2018 Igor Druzhinin <igor.druzhinin@citrix.com> - 2.1-24-xs2
+- Update to intel microcode 20180807
+
+* Fri Aug 03 2018 Igor Druzhinin <igor.druzhinin@citrix.com> - 2.1-24-xs1
+- Update to intel microcode 20180801
+- Add Intel EULA
+
+* Mon Jul 09 2018 Sergey Dyasli <sergey.dyasli@citrix.com> - 2.1-24
+- Update to upstream 2.1-18. 20180703
+
 * Tue Mar 20 2018 Sergey Dyasli <sergey.dyasli@citrix.com> - 2.1-22-xs1
 - Update 06-4f-01 (Broadwell E) microcode to rev 0xb00002a, 2018-01-19, sig 0x000406f1
 
