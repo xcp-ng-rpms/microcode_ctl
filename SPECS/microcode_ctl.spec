@@ -3,7 +3,7 @@
 Summary:        Tool to transform and deploy CPU microcode update for x86.
 Name:           microcode_ctl
 Version:        2.1
-Release:        26.xs5%{?dist}
+Release:        26.xs5.1%{?dist}
 Epoch:          2
 Group:          System Environment/Base
 License:        GPLv2+ and Redistributable, no modification permitted
@@ -13,7 +13,13 @@ URL:            https://pagure.io/microcode_ctl
 Source0: https://repo.citrite.net/xs-local-contrib/microcode_ctl/microcode_ctl-2.1-19-xs5.tar.xz
 Source1: SOURCES/microcode_ctl/01-microcode.conf
 
-
+# XCP-ng updated microcodes
+Source1000: 06-2d-06
+Source1001: 06-2d-07
+Source1002: 06-37-08
+Source1003: 06-37-09
+Source1004: 06-4c-04
+Source1005: 06-5c-0a
 
 Buildroot:      %{_tmppath}/%{name}-%{version}-root
 ExclusiveArch:  %{ix86} x86_64
@@ -40,6 +46,8 @@ make DESTDIR=%{buildroot} PREFIX=%{_prefix} INSDIR=/usr/sbin install clean
 mkdir -p %{buildroot}/usr/lib/dracut/dracut.conf.d
 install -m 644 %{SOURCE1} %{buildroot}/usr/lib/dracut/dracut.conf.d
 
+install -m 644 %{SOURCE1000} %{SOURCE1001} %{SOURCE1002} %{SOURCE1003} %{SOURCE1004} %{SOURCE1005} %{buildroot}/lib/firmware/intel-ucode/
+
 %post
 %{regenerate_initrd_post}
 
@@ -59,6 +67,10 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Thu Jun 20 2019 Samuel Verschelde <stormi-xcp@ylix.fr> - 2.1-26-xs5.1
+- Update to microcode-20190618
+- Includes updated SandyBridge microcode for MDS mitigation
+
 * Thu May 09 2019 Sergey Dyasli <sergey.dyasli@citrix.com> - 2.1-26-xs5
 - Add more ucode for May
 
