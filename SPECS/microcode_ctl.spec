@@ -1,16 +1,16 @@
-%define upstream_version 2.1-19-xs9
+%define upstream_version 2.1-19-xs10
 
 Summary:        Tool to transform and deploy CPU microcode update for x86.
 Name:           microcode_ctl
 Version:        2.1
-Release:        26.xs9
+Release:        26.xs10
 Epoch:          2
 Group:          System Environment/Base
 License:        GPLv2+ and Redistributable, no modification permitted
 URL:            https://pagure.io/microcode_ctl
 #Source0:        https://releases.pagure.org/microcode_ctl/%{name}-%{upstream_version}.tar.xz
 
-Source0: https://repo.citrite.net/xs-local-contrib/microcode_ctl/microcode_ctl-2.1-19-xs9.tar.xz
+Source0: https://repo.citrite.net/xs-local-contrib/microcode_ctl/microcode_ctl-2.1-19-xs10.tar.xz
 Source1: SOURCES/microcode_ctl/01-microcode.conf
 
 
@@ -59,6 +59,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Wed Nov 20 2019 Sergey Dyasli <sergey.dyasli@citrix.com> - 2.1-26-xs10
+- Include microcode-20191115 tag from the public Intel repo
+
 * Wed Nov 06 2019 Sergey Dyasli <sergey.dyasli@citrix.com> - 2.1-26-xs9
 - Add ucode for November
 
