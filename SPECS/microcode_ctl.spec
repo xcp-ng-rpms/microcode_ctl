@@ -3,7 +3,7 @@
 Summary:        Tool to transform and deploy CPU microcode update for x86.
 Name:           microcode_ctl
 Version:        2.1
-Release:        26.xs12.1%{?dist}
+Release:        26.xs12%{?dist}
 Epoch:          2
 Group:          System Environment/Base
 License:        GPLv2+ and Redistributable, no modification permitted
@@ -13,9 +13,7 @@ URL:            https://pagure.io/microcode_ctl
 Source0: https://repo.citrite.net/xs-local-contrib/microcode_ctl/microcode_ctl-2.1-19-xs12.tar.xz
 Source1: SOURCES/microcode_ctl/01-microcode.conf
 
-# XCP-ng updated microcodes
-Source1000: 06-4e-03
-Source1001: 06-5e-03
+
 
 Buildroot:      %{_tmppath}/%{name}-%{version}-root
 ExclusiveArch:  %{ix86} x86_64
@@ -42,8 +40,6 @@ make DESTDIR=%{buildroot} PREFIX=%{_prefix} INSDIR=/usr/sbin install clean
 mkdir -p %{buildroot}/usr/lib/dracut/dracut.conf.d
 install -m 644 %{SOURCE1} %{buildroot}/usr/lib/dracut/dracut.conf.d
 
-install -m 644 %{SOURCE1000} %{SOURCE1001} %{buildroot}/lib/firmware/intel-ucode/
-
 %post
 %{regenerate_initrd_post}
 
@@ -63,10 +59,6 @@ rm -rf %{buildroot}
 
 
 %changelog
-* Wed Jun 17 2020 Samuel Verschelde <stormi-xcp@ylix.fr> - 2.1.26-xs12.1
-- Update to microcode-20200616
-- Reverts microcode for Skylake due to a bug in the previous release
-
 * Wed Jun 03 2020 Igor Druzhinin <igor.druzhinin@citrix.com> - 2.1.26-xs12
 - Import Skylake/Kabylake from ucode-2020-06-02-public-demo
 
