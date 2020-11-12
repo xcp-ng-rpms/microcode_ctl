@@ -1,16 +1,16 @@
-%define upstream_version 2.1-19-xs12
+%define upstream_version 2.1-19-xs13
 
 Summary:        Tool to transform and deploy CPU microcode update for x86.
 Name:           microcode_ctl
 Version:        2.1
-Release:        26.xs12
+Release:        26.xs13
 Epoch:          2
 Group:          System Environment/Base
 License:        GPLv2+ and Redistributable, no modification permitted
 URL:            https://pagure.io/microcode_ctl
 #Source0:        https://releases.pagure.org/microcode_ctl/%{name}-%{upstream_version}.tar.xz
 
-Source0: https://repo.citrite.net/xs-local-contrib/microcode_ctl/microcode_ctl-2.1-19-xs12.tar.xz
+Source0: https://repo.citrite.net/xs-local-contrib/microcode_ctl/microcode_ctl-2.1-19-xs13.tar.xz
 Source1: SOURCES/microcode_ctl/01-microcode.conf
 
 
@@ -59,6 +59,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Fri Oct 30 2020 Igor Druzhinin <igor.druzhinin@citrix.com> - 2.1.26-xs13
+- Import new blobs from ucode-2020-11-10
+
 * Wed Jun 03 2020 Igor Druzhinin <igor.druzhinin@citrix.com> - 2.1.26-xs12
 - Import Skylake/Kabylake from ucode-2020-06-02-public-demo
 
