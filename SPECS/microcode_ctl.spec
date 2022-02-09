@@ -1,16 +1,16 @@
-%define upstream_version 2.1-19-xs15
+%define upstream_version 2.1-19-xs19
 
 Summary:        Tool to transform and deploy CPU microcode update for x86.
 Name:           microcode_ctl
 Version:        2.1
-Release:        26.xs15%{?dist}
+Release:        26.xs19%{?dist}
 Epoch:          2
 Group:          System Environment/Base
 License:        GPLv2+ and Redistributable, no modification permitted
 URL:            https://pagure.io/microcode_ctl
 #Source0:        https://releases.pagure.org/microcode_ctl/%{name}-%{upstream_version}.tar.xz
 
-Source0: https://repo.citrite.net/xs-local-contrib/microcode_ctl/microcode_ctl-2.1-19-xs15.tar.xz
+Source0: https://repo.citrite.net/xs-local-contrib/microcode_ctl/microcode_ctl-2.1-19-xs19.tar.xz
 Source1: SOURCES/microcode_ctl/01-microcode.conf
 
 
@@ -59,6 +59,12 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Mon Feb 04 2022 Igor Druzhinin <igor.druzhinin@citrix.com> - 2.1.26-xs19
+- Import staging microcode-20220204 tag
+- Import staging microcode-20220131 tag
+- Import staging microcode-20220126 tag
+- Import staging microcode-20220121 tag
+
 * Mon May 25 2021 Igor Druzhinin <igor.druzhinin@citrix.com> - 2.1.26-xs15
 - Import staging microcode-20210521 tag
 - Import staging microcode-20210430 tag
