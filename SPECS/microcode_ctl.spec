@@ -2,12 +2,13 @@
 
 %define debug_package %{nil}
 
-%define base_dir %{name}-%{version}-%{release}
+%define base_dir %{name}-%{version}-%{base_release}
 
 Summary:        Tool to transform and deploy CPU microcode update for x86.
 Name:           microcode_ctl
 Version:        2.1
-Release:        26.xs26%{?dist}
+%define base_release 26.xs20
+Release:        %{base_release}%{?dist}
 Epoch:          2
 Group:          System Environment/Base
 License:        Redistributable, no modification permitted
