@@ -1,16 +1,19 @@
-%define upstream_version 2.1-19-xs19
+%global package_srccommit bad42f4c900b5fb1f98b49a11858af32fcee5cca
+
+%define debug_package %{nil}
+
+%define base_dir %{name}-%{version}-%{release}
 
 Summary:        Tool to transform and deploy CPU microcode update for x86.
 Name:           microcode_ctl
 Version:        2.1
-Release:        26.xs19
+Release:        26.xs20
 Epoch:          2
 Group:          System Environment/Base
-License:        GPLv2+ and Redistributable, no modification permitted
+License:        Redistributable, no modification permitted
 URL:            https://pagure.io/microcode_ctl
-#Source0:        https://releases.pagure.org/microcode_ctl/%{name}-%{upstream_version}.tar.xz
 
-Source0: https://repo.citrite.net/xs-local-contrib/microcode_ctl/microcode_ctl-2.1-19-xs19.tar.xz
+Source0: https://code.citrite.net/rest/archive/latest/projects/XSC/repos/intel-nda-ucode/archive?at=bad42f4c900b5fb1f98b49a11858af32fcee5cca&prefix=microcode_ctl-2.1-26.xs20&format=tar.gz#/microcode_ctl-2.1-26.xs20.tar.gz
 Source1: SOURCES/microcode_ctl/01-microcode.conf
 
 
@@ -28,14 +31,19 @@ boot i.e. it doesn't reflash your cpu permanently, reboot and it reverts
 back to the old microcode.
 
 %prep
-%setup -q -n %{name}-%{upstream_version}
+%setup -q -n %{base_dir}
 
 %build
-make CFLAGS="$RPM_OPT_FLAGS" %{?_smp_mflags}
 
 %install
 rm -rf %{buildroot}
-make DESTDIR=%{buildroot} PREFIX=%{_prefix} INSDIR=/usr/sbin install clean
+
+mkdir -p %{buildroot}/lib/firmware/intel-ucode
+install -m 644 intel-ucode/* intel-ucode-with-caveats/* %{buildroot}/lib/firmware/intel-ucode
+
+mkdir -p  %{buildroot}/usr/share/doc/microcode_ctl/
+install -m 644 *.md %{buildroot}/usr/share/doc/microcode_ctl/
+install -m 644 license %{buildroot}/usr/share/doc/microcode_ctl/
 
 mkdir -p %{buildroot}/usr/lib/dracut/dracut.conf.d
 install -m 644 %{SOURCE1} %{buildroot}/usr/lib/dracut/dracut.conf.d
@@ -59,13 +67,17 @@ rm -rf %{buildroot}
 
 
 %changelog
-* Mon Feb 04 2022 Igor Druzhinin <igor.druzhinin@citrix.com> - 2.1.26-xs19
+* Mon Feb 21 2022 Andrew Cooper <andrew.cooper3@citrix.com> - 2.1.26-xs20
+- Rework build system, build directly from Intel microcode repository.
+- Import staging microcode-20220207 tag.
+
+* Mon Feb 07 2022 Igor Druzhinin <igor.druzhinin@citrix.com> - 2.1.26-xs19
 - Import staging microcode-20220204 tag
 - Import staging microcode-20220131 tag
 - Import staging microcode-20220126 tag
 - Import staging microcode-20220121 tag
 
-* Mon May 25 2021 Igor Druzhinin <igor.druzhinin@citrix.com> - 2.1.26-xs15
+* Tue May 25 2021 Igor Druzhinin <igor.druzhinin@citrix.com> - 2.1.26-xs15
 - Import staging microcode-20210521 tag
 - Import staging microcode-20210430 tag
 
