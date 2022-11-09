@@ -1,4 +1,4 @@
-%global package_srccommit bbba30dd5237561a3f4fc5f16a69b9dd113320f8
+%global package_srccommit 3afb3331e11d7cabde0427add42b5d9ed353b488
 
 %define debug_package %{nil}
 
@@ -7,14 +7,14 @@
 Summary:        Tool to transform and deploy CPU microcode update for x86.
 Name:           microcode_ctl
 Version:        2.1
-%define base_release 26.xs22
+%define base_release 26.xs23
 Release:        %{base_release}%{?dist}
 Epoch:          2
 Group:          System Environment/Base
 License:        Redistributable, no modification permitted
 URL:            https://pagure.io/microcode_ctl
 
-Source0: https://code.citrite.net/rest/archive/latest/projects/XSC/repos/intel-nda-ucode/archive?at=bbba30dd5237561a3f4fc5f16a69b9dd113320f8&prefix=microcode_ctl-2.1-26.xs22&format=tar.gz#/microcode_ctl-2.1-26.xs22.tar.gz
+Source0: https://code.citrite.net/rest/archive/latest/projects/XSC/repos/intel-nda-ucode/archive?at=3afb3331e11d7cabde0427add42b5d9ed353b488&prefix=microcode_ctl-2.1-26.xs23&format=tar.gz#/microcode_ctl-2.1-26.xs23.tar.gz
 Source1: SOURCES/microcode_ctl/01-microcode.conf
 
 
@@ -68,6 +68,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Mon Nov 7 2022 Andrew Cooper <andrew.cooper3@citrix.com> - 2.1.26-xs23
+- Update to IPU 2022.3 release.
+
 * Thu Jul 21 2022 Andrew Cooper <andrew.cooper3@citrix.com> - 2.1.26-xs22
 - Update to IPU 2022.2 release.
 
