@@ -2,19 +2,19 @@
 
 %define debug_package %{nil}
 
-%define base_dir %{name}-%{version}-%{base_release}
+%define base_dir Intel-Linux-Processor-Microcode-Data-Files-microcode-20230214
 
 Summary:        Tool to transform and deploy CPU microcode update for x86.
 Name:           microcode_ctl
 Version:        2.1
-%define base_release 26.xs23
+%define base_release 26.xs23.1
 Release:        %{base_release}%{?dist}
 Epoch:          2
 Group:          System Environment/Base
 License:        Redistributable, no modification permitted
 URL:            https://pagure.io/microcode_ctl
 
-Source0: https://code.citrite.net/rest/archive/latest/projects/XSC/repos/intel-nda-ucode/archive?at=3afb3331e11d7cabde0427add42b5d9ed353b488&prefix=microcode_ctl-2.1-26.xs23&format=tar.gz#/microcode_ctl-2.1-26.xs23.tar.gz
+Source0: https://github.com/intel/Intel-Linux-Processor-Microcode-Data-Files/archive/refs/tags/microcode-20230214/Intel-Linux-Processor-Microcode-Data-Files-microcode-20230214.tar.gz
 Source1: SOURCES/microcode_ctl/01-microcode.conf
 
 
@@ -68,6 +68,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Thu Feb 16 2023 Samuel Verschelde <stormi-xcp@ylix.fr> - 2.1.26-xs23.1
+- Update to IPU 2023.1 release.
+
 * Mon Nov 7 2022 Andrew Cooper <andrew.cooper3@citrix.com> - 2.1.26-xs23
 - Update to IPU 2022.3 release.
 
