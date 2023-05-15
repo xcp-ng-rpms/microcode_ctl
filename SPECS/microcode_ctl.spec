@@ -68,84 +68,84 @@ rm -rf %{buildroot}
 
 
 %changelog
-* Thu Feb 16 2023 Samuel Verschelde <stormi-xcp@ylix.fr> - 2.1.26-xs23.1
+* Thu Feb 16 2023 Samuel Verschelde <stormi-xcp@ylix.fr> - 2.1-26.xs23.1
 - Update to IPU 2023.1 release.
 
-* Mon Nov 7 2022 Andrew Cooper <andrew.cooper3@citrix.com> - 2.1.26-xs23
+* Mon Nov 7 2022 Andrew Cooper <andrew.cooper3@citrix.com> - 2.1-26.xs23
 - Update to IPU 2022.3 release.
 
-* Thu Jul 21 2022 Andrew Cooper <andrew.cooper3@citrix.com> - 2.1.26-xs22
+* Thu Jul 21 2022 Andrew Cooper <andrew.cooper3@citrix.com> - 2.1-26.xs22
 - Update to IPU 2022.2 release.
 
-* Thu May 5 2022 Andrew Cooper <andrew.cooper3@citrix.com> - 2.1.26-xs21
+* Thu May 5 2022 Andrew Cooper <andrew.cooper3@citrix.com> - 2.1-26.xs21
 - Update to IPU 2022.1 release.
 
-* Mon Feb 21 2022 Andrew Cooper <andrew.cooper3@citrix.com> - 2.1.26-xs20
+* Mon Feb 21 2022 Andrew Cooper <andrew.cooper3@citrix.com> - 2.1-26.xs20
 - Rework build system, build directly from Intel microcode repository.
 - Import staging microcode-20220207 tag.
 
-* Mon Feb 07 2022 Igor Druzhinin <igor.druzhinin@citrix.com> - 2.1.26-xs19
+* Mon Feb 07 2022 Igor Druzhinin <igor.druzhinin@citrix.com> - 2.1-26.xs19
 - Import staging microcode-20220204 tag
 - Import staging microcode-20220131 tag
 - Import staging microcode-20220126 tag
 - Import staging microcode-20220121 tag
 
-* Tue May 25 2021 Igor Druzhinin <igor.druzhinin@citrix.com> - 2.1.26-xs15
+* Tue May 25 2021 Igor Druzhinin <igor.druzhinin@citrix.com> - 2.1-26.xs15
 - Import staging microcode-20210521 tag
 - Import staging microcode-20210430 tag
 
-* Fri Oct 30 2020 Igor Druzhinin <igor.druzhinin@citrix.com> - 2.1.26-xs13
+* Fri Oct 30 2020 Igor Druzhinin <igor.druzhinin@citrix.com> - 2.1-26.xs13
 - Import new blobs from ucode-2020-11-10
 
-* Wed Jun 03 2020 Igor Druzhinin <igor.druzhinin@citrix.com> - 2.1.26-xs12
+* Wed Jun 03 2020 Igor Druzhinin <igor.druzhinin@citrix.com> - 2.1-26.xs12
 - Import Skylake/Kabylake from ucode-2020-06-02-public-demo
 
-* Fri May 29 2020 Sergey Dyasli <sergey.dyasli@citrix.com> - 2.1-26-xs11
+* Fri May 29 2020 Sergey Dyasli <sergey.dyasli@citrix.com> - 2.1-26.xs11
 - Import Haswell/Broadwell from ucode-2020-05-11-public-demo
 - Import public microcode-20200520 tag
 
-* Wed Nov 20 2019 Sergey Dyasli <sergey.dyasli@citrix.com> - 2.1-26-xs10
+* Wed Nov 20 2019 Sergey Dyasli <sergey.dyasli@citrix.com> - 2.1-26.xs10
 - Include microcode-20191115 tag from the public Intel repo
 
-* Wed Nov 06 2019 Sergey Dyasli <sergey.dyasli@citrix.com> - 2.1-26-xs9
+* Wed Nov 06 2019 Sergey Dyasli <sergey.dyasli@citrix.com> - 2.1-26.xs9
 - Add ucode for November
 
-* Tue Nov 05 2019 Sergey Dyasli <sergey.dyasli@citrix.com> - 2.1-26-xs8
+* Tue Nov 05 2019 Sergey Dyasli <sergey.dyasli@citrix.com> - 2.1-26.xs8
 - Revert the latest SandyBridge ucode
 
-* Thu Sep 19 2019 Sergey Dyasli <sergey.dyasli@citrix.com> - 2.1-26-xs7
+* Thu Sep 19 2019 Sergey Dyasli <sergey.dyasli@citrix.com> - 2.1-26.xs7
 - Include microcode-20190918 tag from the public Intel repo
 
-* Fri Jun 28 2019 Sergey Dyasli <sergey.dyasli@citrix.com> - 2.1-26-xs6
+* Fri Jun 28 2019 Sergey Dyasli <sergey.dyasli@citrix.com> - 2.1-26.xs6
 - Include microcode-20190618 tag from Intel (includes SandyBridge ucode)
 
-* Thu May 09 2019 Sergey Dyasli <sergey.dyasli@citrix.com> - 2.1-26-xs5
+* Thu May 09 2019 Sergey Dyasli <sergey.dyasli@citrix.com> - 2.1-26.xs5
 - Add more ucode for May
 
-* Tue Apr 30 2019 Sergey Dyasli <sergey.dyasli@citrix.com> - 2.1-26-xs4
+* Tue Apr 30 2019 Sergey Dyasli <sergey.dyasli@citrix.com> - 2.1-26.xs4
 - Add more ucode for May
 
-* Mon Apr 29 2019 Sergey Dyasli <sergey.dyasli@citrix.com> - 2.1-26-xs3
+* Mon Apr 29 2019 Sergey Dyasli <sergey.dyasli@citrix.com> - 2.1-26.xs3
 - Update to include a new microcode
 
-* Fri Feb 08 2019 Sergey Dyasli <sergey.dyasli@citrix.com> - 2.1-26-xs2
+* Fri Feb 08 2019 Sergey Dyasli <sergey.dyasli@citrix.com> - 2.1-26.xs2
 - Update to intel Q4'18 microcode
 
-* Mon Aug 13 2018 Igor Druzhinin <igor.druzhinin@citrix.com> - 2.1-26-xs1
+* Mon Aug 13 2018 Igor Druzhinin <igor.druzhinin@citrix.com> - 2.1-26.xs1
 - Update to upstream 2.1-19. 20180807 to take a Broadwell bundle
 - Fix Makefile in the tarball to work with our version of tar
 
-* Thu Aug 09 2018 Igor Druzhinin <igor.druzhinin@citrix.com> - 2.1-24-xs2
+* Thu Aug 09 2018 Igor Druzhinin <igor.druzhinin@citrix.com> - 2.1-24.xs2
 - Update to intel microcode 20180807
 
-* Fri Aug 03 2018 Igor Druzhinin <igor.druzhinin@citrix.com> - 2.1-24-xs1
+* Fri Aug 03 2018 Igor Druzhinin <igor.druzhinin@citrix.com> - 2.1-24.xs1
 - Update to intel microcode 20180801
 - Add Intel EULA
 
 * Mon Jul 09 2018 Sergey Dyasli <sergey.dyasli@citrix.com> - 2.1-24
 - Update to upstream 2.1-18. 20180703
 
-* Tue Mar 20 2018 Sergey Dyasli <sergey.dyasli@citrix.com> - 2.1-22-xs1
+* Tue Mar 20 2018 Sergey Dyasli <sergey.dyasli@citrix.com> - 2.1-22.xs1
 - Update 06-4f-01 (Broadwell E) microcode to rev 0xb00002a, 2018-01-19, sig 0x000406f1
 
 * Mon Mar 19 2018 Sergey Dyasli <sergey.dyasli@citrix.com> - 2.1-22
