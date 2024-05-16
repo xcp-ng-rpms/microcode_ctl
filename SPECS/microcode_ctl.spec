@@ -8,7 +8,7 @@
 Summary:        Tool to transform and deploy CPU microcode update for x86.
 Name:           microcode_ctl
 Version:        2.1
-%define base_release 26.xs28
+%define base_release 26.xs29
 Release:        %{base_release}.1%{?dist}
 Epoch:          2
 Group:          System Environment/Base
