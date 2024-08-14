@@ -2,14 +2,14 @@
 
 %define debug_package %{nil}
 
-%define intel_release 20240514
+%define intel_release 20240813
 %define base_dir Intel-Linux-Processor-Microcode-Data-Files-microcode-%{intel_release}
 
 Summary:        Tool to transform and deploy CPU microcode update for x86.
 Name:           microcode_ctl
 Version:        2.1
 %define base_release 26.xs29
-Release:        %{base_release}.2%{?dist}
+Release:        %{base_release}.3%{?dist}
 Epoch:          2
 Group:          System Environment/Base
 License:        Redistributable, no modification permitted
@@ -17,10 +17,6 @@ URL:            https://pagure.io/microcode_ctl
 
 Source0: https://github.com/intel/Intel-Linux-Processor-Microcode-Data-Files/archive/refs/tags/microcode-%{intel_release}/Intel-Linux-Processor-Microcode-Data-Files-microcode-%{intel_release}.tar.gz
 Source1: SOURCES/microcode_ctl/01-microcode.conf
-
-# XCP-ng
-Source2: 06-7a-01
-
 
 Buildroot:      %{_tmppath}/%{name}-%{version}-root
 ExclusiveArch:  %{ix86} x86_64
@@ -52,8 +48,6 @@ install -m 644 license %{buildroot}/usr/share/doc/microcode_ctl/
 mkdir -p %{buildroot}/usr/lib/dracut/dracut.conf.d
 install -m 644 %{SOURCE1} %{buildroot}/usr/lib/dracut/dracut.conf.d
 
-install -m 644 %{SOURCE2} %{buildroot}/lib/firmware/intel-ucode/
-
 %post
 %{regenerate_initrd_post}
 
@@ -73,6 +67,16 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Wed Aug 14 2024 Samuel Verschelde <stormi-xcp@ylix.fr> - 2.1-26.xs29.3
+- Update to IPU 2024.3 release
+- Security updates for:
+    - INTEL-SA-01083
+    - INTEL-SA-01118
+    - INTEL-SA-01100
+    - INTEL-SA-01038
+    - INTEL-SA-01046
+- Removed 06-7a-01 individual "Source" file, now included in the latest release
+
 * Tue May 28 2024 Samuel Verschelde <stormi-xcp@ylix.fr> - 2.1-26.xs29.2
 - Update Gemini Lake 06-7a-01 to revision 0x42
 - Fixes a regression introduced in IPU-2024.1, revision 0x40
