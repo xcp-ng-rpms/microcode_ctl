@@ -9,7 +9,7 @@ Summary:        Tool to transform and deploy CPU microcode update for x86.
 Name:           microcode_ctl
 Version:        2.1
 %define base_release 26.xs29
-Release:        %{base_release}.3%{?dist}
+Release:        %{base_release}.4%{?dist}
 Epoch:          2
 Group:          System Environment/Base
 License:        Redistributable, no modification permitted
@@ -67,6 +67,10 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Fri Aug 16 2024 Samuel Verschelde <stormi-xcp@ylix.fr> - 2.1-26.xs29.4
+- Update to the fixed released of IPU 2024.3
+- Intel has re-done the release after we reported that 06-a5-03 was not updated
+
 * Wed Aug 14 2024 Samuel Verschelde <stormi-xcp@ylix.fr> - 2.1-26.xs29.3
 - Update to IPU 2024.3 release
 - Security updates for:
