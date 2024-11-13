@@ -2,14 +2,14 @@
 
 %define debug_package %{nil}
 
-%define intel_release 20240910
+%define intel_release 20241112
 %define base_dir Intel-Linux-Processor-Microcode-Data-Files-microcode-%{intel_release}
 
 Summary:        Tool to transform and deploy CPU microcode update for x86.
 Name:           microcode_ctl
 Version:        2.1
 %define base_release 26.xs29
-Release:        %{base_release}.5%{?dist}
+Release:        %{base_release}.6%{?dist}
 Epoch:          2
 Group:          System Environment/Base
 License:        Redistributable, no modification permitted
@@ -67,6 +67,16 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Wed Nov 13 2024 Gael Duperrey <gduperrey@vates.tech> - 2.1-26.xs29.6
+- Update to microcode-20241112 release
+- Security updates for:
+    - INTEL-SA-01101
+    - INTEL-SA-01079
+- Updated security updates for:
+    - INTEL-SA-01097
+    - INTEL-SA-01103
+- Updates for multiple functional issues
+
 * Wed Sep 25 2024 David Morel <david.morel@vates.tech> - 2.1-26.xs29.5
 - Update to the latest version of IPU 2024.3
 - Security updates for: 
