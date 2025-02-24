@@ -2,14 +2,14 @@
 
 %define debug_package %{nil}
 
-%define intel_release 20241112
+%define intel_release 20250211
 %define base_dir Intel-Linux-Processor-Microcode-Data-Files-microcode-%{intel_release}
 
 Summary:        Tool to transform and deploy CPU microcode update for x86.
 Name:           microcode_ctl
 Version:        2.1
 %define base_release 26.xs29
-Release:        %{base_release}.6%{?dist}
+Release:        %{base_release}.7%{?dist}
 Epoch:          2
 Group:          System Environment/Base
 License:        Redistributable, no modification permitted
@@ -17,6 +17,12 @@ URL:            https://pagure.io/microcode_ctl
 
 Source0: https://github.com/intel/Intel-Linux-Processor-Microcode-Data-Files/archive/refs/tags/microcode-%{intel_release}/Intel-Linux-Processor-Microcode-Data-Files-microcode-%{intel_release}.tar.gz
 Source1: SOURCES/microcode_ctl/01-microcode.conf
+
+# XCP-ng: Dropped by Intel in their updates, relates early steppings of
+# Sapphire Rapids, we keep them in case some homelabber got their hands on
+# these, but they won't be updated.
+Source2: SOURCES/06-8f-05
+Source3: SOURCES/06-8f-06
 
 Buildroot:      %{_tmppath}/%{name}-%{version}-root
 ExclusiveArch:  %{ix86} x86_64
@@ -40,6 +46,8 @@ rm -rf %{buildroot}
 
 mkdir -p %{buildroot}/lib/firmware/intel-ucode
 install -m 644 intel-ucode/* intel-ucode-with-caveats/* %{buildroot}/lib/firmware/intel-ucode
+install -m 644 %{SOURCE2} %{buildroot}/lib/firmware/intel-ucode
+install -m 644 %{SOURCE3} %{buildroot}/lib/firmware/intel-ucode
 
 mkdir -p  %{buildroot}/usr/share/doc/microcode_ctl/
 install -m 644 *.md %{buildroot}/usr/share/doc/microcode_ctl/
@@ -67,6 +75,17 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Fri Feb 21 2025 David Morel <david.morel@vates.tech> - 2.1-26.xs29.7
+- Update to microcode-20250211 release
+- Security updates for:
+    - INTEL-SA-01166
+    - INTEL-SA-01213
+    - INTEL-SA-01139
+    - INTEL-SA-01228
+- Updates for multiple functional issues
+- Upstream update drops files for older Sapphire Rapids steppings, we kept the previous versions
+
+Security updates for INTEL-SA-01194
 * Wed Nov 13 2024 Gael Duperrey <gduperrey@vates.tech> - 2.1-26.xs29.6
 - Update to microcode-20241112 release
 - Security updates for:
