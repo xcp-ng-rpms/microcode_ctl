@@ -2,14 +2,14 @@
 
 %define debug_package %{nil}
 
-%define intel_release 20250211
+%define intel_release 20250512
 %define base_dir Intel-Linux-Processor-Microcode-Data-Files-microcode-%{intel_release}
 
 Summary:        Tool to transform and deploy CPU microcode update for x86.
 Name:           microcode_ctl
 Version:        2.1
 %define base_release 26.xs29
-Release:        %{base_release}.7%{?dist}
+Release:        %{base_release}.8%{?dist}
 Epoch:          2
 Group:          System Environment/Base
 License:        Redistributable, no modification permitted
@@ -75,6 +75,16 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Tue May 13 2025 David Morel <david.morel@vates.tech> - 2.1-26.xs29.8
+- Update to publicly released microcode-20250512
+- Security updates for:
+    - INTEL-SA-01153
+    - INTEL-SA-01244
+    - INTEL-SA-01247
+    - INTEL-SA-01322
+- Updates for multiple functional issues
+- Upstream doesn't provide updates for older Sapphire Rapids steppings, we kept the last known versions
+
 * Fri Feb 21 2025 David Morel <david.morel@vates.tech> - 2.1-26.xs29.7
 - Update to microcode-20250211 release
 - Security updates for:
